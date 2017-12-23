@@ -16,9 +16,12 @@ our sub run ( %ctx, %parameters ) {
   my $chat_id = %parameters<id>;
 
   my $bot = Telegram::Bot.new($token);
+
   if %parameters<offline> {
     say "don't send notification, we are in offline mode ...";
   } else {
+
   $bot.send-message({ chat-id => $chat_id, text => $message });
+
   }
 }

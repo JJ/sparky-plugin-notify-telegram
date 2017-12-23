@@ -3,7 +3,7 @@ use Test;
 plan 1;
 use Sparky::Plugin::Notify::Telegram;
 Sparky::Plugin::Notify::Telegram::run %( 
-    project       => "Animals",
+    project       => "test",
     build-state   => "success"
   ), 
   %( id => "111", message => "test", token => "token", offline => True );
