@@ -12,6 +12,11 @@ our sub run ( %ctx, %parameters ) {
   say "trigger notification. $project\@$build-id, state: $build-state";
 
   my $token = %parameters<token>;
+
+  if ( $token.IO ~~ :e ) { 
+    $token = (slurp $token).chomp 
+  };
+
   my $message = %parameters<message>;
   my $chat_id = %parameters<id>;
 
@@ -21,7 +26,7 @@ our sub run ( %ctx, %parameters ) {
     say "don't send notification, we are in offline mode ...";
   } else {
 
-  $bot.send-message({ chat-id => $chat_id, text => $message });
+    $bot.send-message({ chat-id => $chat_id, text => $message });
 
   }
 }
